@@ -1,0 +1,13 @@
+fastapi[standard]
+python-multipart 
+langchain_community
+langchain_text_splitters
+langchain-google-genai
+faiss-cpu 
+pypdf 
+unstructured 
+python-docx
+python-dotenv
+pymongo[srv]
+passlib[bcrypt] 
+python-jose
