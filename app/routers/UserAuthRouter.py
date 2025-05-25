@@ -1,8 +1,10 @@
 from fastapi import APIRouter, HTTPException
-from services.authentication.auth_services import hash_password, verify_password, create_access_token
-from schema.user_model import UserCreate, UserLogin
-from config.db import client
+from app.services.authentication.auth_services import hash_password, verify_password, create_access_token
+from app.schema.user_model import UserCreate, UserLogin
+from app.config.db import client
 
+if client is None:
+    raise RuntimeError("MongoDB client not initialized. Check environment variables.")
 db = client["rag_docs_db"]
 user_col = db["users"]
 

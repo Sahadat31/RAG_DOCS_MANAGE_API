@@ -103,7 +103,7 @@ Embeddings are user-specific and isolated
 Passwords are hashed using bcrypt
 
 ## TEST CASES
-pytest --cov=app tests/
+pytest --cov=app
 coverage html  # View coverage in htmlcov/index.html
 
 

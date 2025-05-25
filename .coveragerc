@@ -1,0 +1,11 @@
+[run]
+omit =
+    */__init__.py
+    */venv/*
+    tests/*
+    app/schema/*
+    app/config/*
+
+[report]
+show_missing = true
+skip_covered = true

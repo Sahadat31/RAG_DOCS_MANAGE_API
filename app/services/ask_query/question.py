@@ -3,11 +3,12 @@ from langchain.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain.chains import RetrievalQA
 from langchain_google_genai import ChatGoogleGenerativeAI
-from config.db import client
+from app.config.db import client
 from bson import ObjectId
-import os
 
 load_dotenv()
+if client is None:
+    raise RuntimeError("MongoDB client not initialized. Check environment variables.")
 db = client["rag_docs_db"]
 users_collection = db["users"]
 docs_mapper_collection = db["docs_to_embeddings_mapper"]

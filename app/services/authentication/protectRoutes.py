@@ -1,5 +1,5 @@
 from fastapi import HTTPException,Depends
-from services.authentication.auth_services import decode_access_token
+from app.services.authentication.auth_services import decode_access_token
 from fastapi.security import OAuth2PasswordBearer
 
 

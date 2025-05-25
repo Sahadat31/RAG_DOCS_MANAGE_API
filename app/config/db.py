@@ -4,7 +4,11 @@ import os
 
 load_dotenv()
 
-MONGOURL = os.getenv("MONGODB_URL")
-MONGOURL=MONGOURL.replace("USER",os.getenv("DB_USERNAME"))
-MONGOURL=MONGOURL.replace("PASSWORD",os.getenv("DB_PASSWORD"))
-client = MongoClient(MONGOURL)
+client = None
+MONGOURL = os.getenv("MONGODB_URL", "")
+DB_USER = os.getenv("DB_USERNAME", "")
+DB_PASS = os.getenv("DB_PASSWORD", "")
+
+if MONGOURL and DB_USER and DB_PASS:
+    MONGOURL = MONGOURL.replace("USER", DB_USER).replace("PASSWORD", DB_PASS)
+    client = MongoClient(MONGOURL)

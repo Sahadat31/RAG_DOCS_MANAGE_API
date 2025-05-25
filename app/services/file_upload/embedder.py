@@ -2,17 +2,21 @@ from dotenv import load_dotenv
 from langchain_community.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from concurrent.futures import ThreadPoolExecutor
-from config.db import client
+from app.config.db import client
 from datetime import datetime
 from bson import ObjectId
 import uuid
 import os
 
 load_dotenv()
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
+key = os.getenv("GOOGLE_API_KEY")
+if key:
+    os.environ["GOOGLE_API_KEY"] = key
 
 
 def generate_and_store_embeddings(chunks,user):
+    if client is None:
+        raise RuntimeError("MongoDB client not initialized. Check environment variables.")
     db = client["rag_docs_db"]
     embedded_collection = db["embeddings"]       # embeddings will have collection of all the embedded chunks
     docs_to_embeddings_collection = db["docs_to_embeddings_mapper"]    # it will have uploaded docs id - all embeddings mapper array

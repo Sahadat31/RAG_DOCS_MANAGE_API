@@ -1,8 +1,8 @@
 from fastapi import APIRouter, UploadFile, File, Body, Depends
 from typing import List
-from services.file_upload import file_loader,embedder
-from services.ask_query import question
-from services.authentication.protectRoutes import get_current_user
+from app.services.file_upload import file_loader,embedder
+from app.services.ask_query import question
+from app.services.authentication.protectRoutes import get_current_user
 
 router = APIRouter()
 
